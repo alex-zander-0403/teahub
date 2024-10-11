@@ -1,12 +1,33 @@
 import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/Layout";
+import MainPage from "./components/pages/MainPage";
+import TeaPage from "./components/pages/TeaPage";
+
 // import "./App.css";
 
 function App() {
-  return (
-    <>
-      <div>123</div>
-    </>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <MainPage />,
+        },
+        {
+          path: "/tea",
+          element: <TeaPage />,
+        },
+        // {
+        //   path: "/messages/:messageId",
+        //   element: <MessageInfoPage />,
+        // },
+      ],
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;
